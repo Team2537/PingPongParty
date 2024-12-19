@@ -1,12 +1,14 @@
 package frc.robot.commands
 
 import edu.wpi.first.wpilibj2.command.Command
-import frc.robot.subsystem.Dropper
+import frc.robot.subsystems.Dropper
 
-class myServoClose : Command() {
-    //Close
-
+class myServoClose(private val dropper: Dropper) : Command() {
     override fun initialize() {
-        Dropper.setAngle(0.0)
+        dropper.setAngle(0.0)
+    }
+
+    override fun isFinished(): Boolean {
+        return true
     }
 }

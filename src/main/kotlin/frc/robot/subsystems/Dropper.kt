@@ -1,19 +1,19 @@
-import com.revrobotics.CANSparkLowLevel1
+package frc.robot.subsystems
+
 import com.revrobotics.CANSparkMax
-import edu.wpi.first.wpilibj.myServo
-import edu.wpi.first.wpilibj2.command.Subsystem
+import com.revrobotics.CANSparkLowLevel.MotorType
+import edu.wpi.first.wpilibj.Servo
+import edu.wpi.first.wpilibj2.command.SubsystemBase
 
-
-object Dropper : Subsystem {
-    var dropperMotor: Servo = Servo(1) //channel
-    var dropperDCMotor: CANSparkMax = CANSparkMax(7, CANSparkMax.MotorType.kBrushless)
-
+class Dropper : SubsystemBase() {
+    private val dropperMotor = Servo(1) //channel
+    private val dropperDCMotor = CANSparkMax(8, MotorType.kBrushless)
 
     fun setAngle(target: Double) {
-        dropperMotor.angle = target
+        dropperMotor.setAngle(target)
     }
 
-    fun mySpeed(speed: Double) {
+    fun setSpeed(speed: Double) {
         dropperDCMotor.set(speed)
     }
 }

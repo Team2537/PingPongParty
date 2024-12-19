@@ -21,6 +21,7 @@ class RobotContainer {
     // The robot's subsystems and commands are defined here...
     private val driveSubsystem = DriveSubsystem()
     private val driveCommand = DriveCommand(driveSubsystem)
+    private val dropper = Dropper()
 
     // Replace with CommandPS4Controller or CommandJoystick if needed
     private val driverController = CommandXboxController(Constants.OperatorConstants.kDriverControllerPort)
@@ -32,9 +33,9 @@ class RobotContainer {
 
         driveSubsystem.setDefaultCommand(driveCommand)
 
-        driverController.a().whileTrue(DcMotorRun())
-        driverController.b().onTrue(myServoOpen())
-        driverController.x().onTrue(myServoClose())
+        driverController.a().whileTrue(DcMotorRun(dropper))
+        // driverController.b().onTrue(myServoOpen(dropper))
+        // driverController.x().onTrue(myServoClose(dropper))
     }
 
     /**
